@@ -16,6 +16,6 @@ $sizeMap = array(
 
 add_shortcode('dfp', function($args){
   global $DoubleClick;
-  $size = isset(args['size']) ? $sizeMap[args['size']] : array();
+  $size = isset($args['size']) ? $sizeMap[$args['size']] : array();
   return $DoubleClick->place_ad( $args['ad'], $size );
 });

@@ -13,6 +13,7 @@ Modified from https://wordpress.org/plugins/doubleclick-for-wp/
 In order for the plugin to serve different sizes, a default size/shape needs to be specified.
 Defaults include:
 <br/>
+<br/>
 leaderboard : ( small:320x50, medium: 468x60, large: 728x90 )<br/>
 banner : ( small:180x150, medium: 250x250, large: 250x250 )<br/>
 skyscraper : ( small:160x600, medium: 160x600, large: 160x600 ) - * Not responsive as skyscrapers can't go narrower
