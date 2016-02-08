@@ -20,8 +20,18 @@ $sizeMap = array(
 
 );
 
+// Template function
+function dfp( $ad, $size, $noecho = false ) {
+  global $DoubleClick, $sizeMap;
+  $size = isset($size) ? $sizeMap[$size] : array();
+
+  $snippet = $DoubleClick->place_ad( $ad, $size );
+
+  if ($noecho) return $snippet;
+  else echo $snippet;
+}
+
+// Shortcode function
 add_shortcode('dfp', function($args){
-  global $DoubleClick;
-  $size = isset($args['size']) ? $sizeMap[$args['size']] : array();
-  return $DoubleClick->place_ad( $args['ad'], $size );
+  echo dfp($args['ad'], $args['size']);
 });
