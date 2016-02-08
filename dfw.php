@@ -7,6 +7,12 @@ Version: 		0.1.1
 
 include('dfw-init.php');
 
+// Define breakpoints
+$DoubleClick->register_breakpoint('small', array('minWidth'=> 0,'maxWidth'=>511));
+$DoubleClick->register_breakpoint('medium', array('minWidth'=>512,'maxWidth'=>1199));
+$DoubleClick->register_breakpoint('large', array('minWidth'=>1200,'maxWidth'=>99999));
+
+
 $sizeMap = array(
 
   'leaderboard' => array( 'small' => '320x50', 'medium' => '468x60', 'large' => '728x90' ),
