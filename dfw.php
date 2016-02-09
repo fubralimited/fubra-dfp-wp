@@ -19,6 +19,7 @@ $DoubleClick->register_breakpoint('large', array('minWidth'=>1200,'maxWidth'=>99
 $sizeMap = array(
 
   'leaderboard' => array( 'small' => '320x50', 'medium' => '468x60', 'large' => '728x90' ),
+  'banner' => array( 'small' => '250x250', 'medium' => '250x250', 'large' => '250x250' ),
   'skyscraper' => array( 'small' => '160x600', 'medium' => '160x600','large' => '160x600' )
 
 );
@@ -26,8 +27,17 @@ $sizeMap = array(
 // Template function
 function dfp( $ad, $size ) {
   global $DoubleClick, $sizeMap;
-  $size = isset($size) ? $sizeMap[$size] : array();
-  return $DoubleClick->place_ad( $ad, $size );
+
+  $map = array();
+
+  // Format size string if set
+  if (isset($size)) {
+    $size = strtolower($size);
+    $size = str_replace(' ', '', $size);
+    $map =$sizeMap[$size];
+  }
+
+  return $DoubleClick->place_ad( $ad, $map );
 }
 
 // Shortcode function
