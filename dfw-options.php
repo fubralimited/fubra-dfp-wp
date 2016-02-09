@@ -69,8 +69,6 @@ function dfw_register_options() {
 
 
 	register_setting( 'doubleclick-for-wordpress', 'dfw_network_code' );
-	register_setting( 'doubleclick-for-wordpress', 'dfw_breakpoints', 'dfw_breakpoints_save' );
-
 }
 add_action('admin_init', 'dfw_register_options');
 
