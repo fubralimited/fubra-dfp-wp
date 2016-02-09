@@ -1,0 +1,11 @@
+{
+    "name": "fubra/fubra-dfp",
+    "description": "WordPress plugin for serving responsive dfp ads.",
+    "authors": [
+        {
+            "name": "Ray Viljoen",
+            "email": "ray@fubra.com"
+        }
+    ],
+    "require": {}
+}
