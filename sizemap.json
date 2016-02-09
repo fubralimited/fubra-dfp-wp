@@ -1,0 +1,17 @@
+{
+  "leaderboard": {
+    "small": "320x50",
+    "medium": "468x60",
+    "large": "728x90"
+  },
+  "banner": {
+    "small": "320x100",
+    "medium": "250x250",
+    "large": "300x250"
+  },
+  "skyscraper": {
+    "small": "160x600",
+    "medium": "160x600",
+    "large": "160x600"
+  }
+}

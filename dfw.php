@@ -15,14 +15,8 @@ $DoubleClick->register_breakpoint('small', array('minWidth'=> 0,'maxWidth'=>511)
 $DoubleClick->register_breakpoint('medium', array('minWidth'=>512,'maxWidth'=>1199));
 $DoubleClick->register_breakpoint('large', array('minWidth'=>1200,'maxWidth'=>99999));
 
-
-$sizeMap = array(
-
-  'leaderboard' => array( 'small' => '320x50', 'medium' => '468x60', 'large' => '728x90' ),
-  'banner' => array( 'small' => '250x250', 'medium' => '250x250', 'large' => '250x250' ),
-  'skyscraper' => array( 'small' => '160x600', 'medium' => '160x600','large' => '160x600' )
-
-);
+// Get json file with size configurations
+$sizeMap = json_decode( file_get_contents( dirname(__FILE__) . '/sizemap.json' ), TRUE );
 
 // Template function
 function dfp( $ad, $size ) {
