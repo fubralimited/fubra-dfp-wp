@@ -5,7 +5,10 @@ Description: 	Responsive DoubleClick ads in WordPress. Modified copy of https://
 Version: 		0.1.1
 */
 
+global $DoubleClick;
+
 include('dfw-init.php');
+
 
 // Define breakpoints
 $DoubleClick->register_breakpoint('small', array('minWidth'=> 0,'maxWidth'=>511));
