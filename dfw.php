@@ -19,16 +19,22 @@ $DoubleClick->register_breakpoint('large', array('minWidth'=>1200,'maxWidth'=>99
 $sizeMap = json_decode( file_get_contents( dirname(__FILE__) . '/sizemap.json' ), TRUE );
 
 // Template function
-function dfp( $ad, $size ) {
+function dfp( $ad, $type, $map ) {
   global $DoubleClick, $sizeMap;
 
   $map = array();
 
-  // Format size string if set
-  if (isset($size)) {
-    $size = strtolower($size);
-    $size = str_replace(' ', '', $size);
-    $map =$sizeMap[$size];
+  if (isset($type)) {
+
+    $type = strtolower($type);
+    $type = str_replace(' ', '', $type);
+    $map =$sizeMap[$type];
+
+  } else {
+    $err  = '<h1 style="color:white,background:red,padding:10px,font-size:25px;">';
+    $err .= 'DFP AD ERROR - <a href="https://github.com/fubralimited/fubra-dfp-wp">Check Documentation</a>';
+    $err .= '</h1>';
+    return $err;
   }
 
   return $DoubleClick->place_ad( $ad, $map );
@@ -36,5 +42,5 @@ function dfp( $ad, $size ) {
 
 // Shortcode function
 add_shortcode('dfp', function($args){
-  return dfp($args['ad'], $args['size']);
+  return dfp( $args['ad'], $args['type'], $args['map'] );
 });
