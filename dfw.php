@@ -3,7 +3,7 @@
 Plugin Name: 	Fubra DoubleClick for WordPress
 Description: 	Responsive DoubleClick ads in WordPress. Modified copy of https://wordpress.org/plugins/doubleclick-for-wp/
 Author:    		Fubra Ltd.
-Version: 		  1.0.0
+Version: 		  1.1.0
 */
 
 include('dfw-init.php');
