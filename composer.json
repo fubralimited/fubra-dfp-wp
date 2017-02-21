@@ -1,5 +1,5 @@
 {
-    "name": "fubra/fubra-dfp",
+    "name": "fubralimited/fubra-dfp-wp",
     "description": "WordPress plugin for serving responsive dfp ads.",
     "version": "1.0.0",
     "type": "wordpress-plugin",
