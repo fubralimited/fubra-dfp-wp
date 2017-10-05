@@ -26,7 +26,7 @@ function _str_clean($s) {
 }
 
 // Template function
-function dfp( $ad, $type, $user_map ) {
+function dfp( $ad, $type, $user_map = NULL ) {
   global $DoubleClick, $sizeMap;
 
   // Error html
