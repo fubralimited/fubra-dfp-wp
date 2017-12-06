@@ -92,12 +92,12 @@ class DoubleClick {
 		$this->networkCode = $networkCode;
 
 		// Script enqueue is static because we only ever want to print it once.
-		if(!$this::$enqueued) {
+		if(!self::$enqueued) {
 			add_action('wp_footer', array($this, 'enqueue_scripts'));
-			$this->enqueued = true;
+			self::$enqueued = true;
 		}
 
-		add_action('wp_print_footer_scripts', array($this, 'footer_script'));
+		//add_action('wp_print_footer_scripts', array($this, 'footer_script'));
 
 		$breakpoints = unserialize( get_option('dfw_breakpoints') );
 
@@ -125,8 +125,8 @@ class DoubleClick {
 	}
 
 	public function enqueue_scripts() {
-		wp_register_script( 'jquery.dfp.min.js', plugins_url( 'js/jquery.dfp.min.js', __FILE__ ) , array('main'), '1.1.5', true );
-		wp_register_script( 'jquery.dfw.js', plugins_url( 'js/jquery.dfw.js', __FILE__ ) , array('main'), '1.1.5', true );
+		wp_register_script( 'jquery.dfp.min.js', plugins_url( 'js/jquery.dfp.min.js', __FILE__ ) , array('jquery'), '1.1.5', true );
+		wp_register_script( 'jquery.dfw.js', plugins_url( 'js/jquery.dfw.js', __FILE__ ) , array('jquery'), '1.1.5', true );
 
 		// Localize the script with other data
 		// from the plugin.
@@ -149,6 +149,13 @@ class DoubleClick {
 
 		wp_enqueue_script( 'jquery.dfp.min.js' );
 		wp_enqueue_script( 'jquery.dfw.js' );
+		if(!$this->debug) :
+                    wp_register_script( 'dfp.render', plugins_url( 'js/dfp.render.js', __FILE__ ) , array('jquery.dfw.js'), '1.1.5', true );
+		    $data['code'] = $this->networkCode();
+                    wp_localize_script( 'dfp.render', 'dfw', $data);
+                    wp_enqueue_script( 'dfp.render' );
+                endif;
+
 	}
 
 	/**
@@ -159,32 +166,6 @@ class DoubleClick {
 	 */
 	private function networkCode() {
 		return isset($this->networkCode) ? $this->networkCode : get_option('dfw_network_code','xxxxxx');
-	}
-
-	public function footer_script() {
-
-		if(!$this->debug) :
-
-		echo "\n<script type='text/javascript'>\n";
-
-		$mappings = array();
-
-		foreach($this->adSlots as $ad) {
-			if($ad->hasMapping()) {
-				$mappings["mapping{$ad->id}"] = $ad->mapping();
-			}
-		}
-
-		echo "\tjQuery('.dfw-unit:not(.dfw-lazy-load)').dfp({ \n";
-		echo "\t\tdfpID: '". $this->networkCode() ."',\n";
-		echo "\t\tcollapseEmptyDivs:false,\n";
-		echo "\t\tsetTargeting: " . json_encode($this->targeting()) . ",\n";
-		echo "\t\tsizeMapping: " . json_encode($mappings);
-		echo "\t});\n";
-
-		echo "\n</script>\n";
-
-		endif;
 	}
 
 	private function targeting() {
