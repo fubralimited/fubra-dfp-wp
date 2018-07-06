@@ -1,4 +1,9 @@
 {
+  "posterboard": {
+    "small": "300x250",
+    "medium": "468x60",
+    "large": "970x250"
+  },
   "leaderboard": {
     "small": "300x250",
     "medium": "468x60",
