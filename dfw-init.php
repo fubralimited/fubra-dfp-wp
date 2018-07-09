@@ -99,7 +99,8 @@ class DoubleClick {
 
 		add_action('wp_print_footer_scripts', array($this, 'footer_script'));
 
-		$breakpoints = unserialize( get_option('dfw_breakpoints') );
+		// Get breakpoints from db
+		$breakpoints = maybe_unserialize( get_option('dfw_breakpoints') );
 
 		if( !empty($breakpoints) ):
 			foreach($breakpoints as $b) {
@@ -110,6 +111,11 @@ class DoubleClick {
 					);
 				$this->register_breakpoint($b['identifier'],$args);
 			}
+		else:
+			// Define breakpoints
+			$this->register_breakpoint('small', array('minWidth'=> 0,'maxWidth'=>511));
+			$this->register_breakpoint('medium', array('minWidth'=>512,'maxWidth'=>1199));
+			$this->register_breakpoint('large', array('minWidth'=>1200,'maxWidth'=>99999));
 		endif;
 	}
 
