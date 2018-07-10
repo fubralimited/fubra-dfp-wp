@@ -394,11 +394,9 @@ class DoubleClickAdSlot {
 
 			$breakpoint = $DoubleClick->breakpoints[$breakpointIdentifier];
 
-			//print_r($breakpoint);
-
 			// The minimum browser width/height for this sizemapping.
 			$browserHeight = 1;
-			$browserWidth = $breakpoint->minWidth;
+			$browserWidth = (int) $breakpoint->minWidth;
 
 			$sizeStrings = explode(",",$size);	// eg. 300x250,336x300
 			$sizeArray = array();

@@ -41,7 +41,7 @@ function dfp( $ad, $type, $user_map = NULL ) {
 
     $user_map = _str_clean($user_map);
     $map = explode( ',', $user_map );
-    $map = array_combine( array('small','medium','large'), $map );
+    $map = array_combine( array_keys($DoubleClick->breakpoints), $map );
 
   // Format size string if set
   } else if ( isset($type) ) {
